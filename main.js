@@ -30,26 +30,24 @@ const printStacks = () => {
 }
 
 // I think the next think I need to do is define these more dynamically eg startStack = stacks['argument1'], endStack = stacks[argument2]
-let startStack = stacks.a
-let endStack = stacks.b
 // Next, what do you think this function should do?
-const movePiece = () => {
+const movePiece = (startStack, endStack) => {
 
   // define the 'piece' to be moved as the number popped off of the start stack array.
-  const piece = startStack.pop()
+  let piece = stacks[startStack].pop()
   // use the push method to add that piece to the end of the end stack array
   
-  endStack.push(piece)
+  stacks[endStack].push(piece)
 
 }
 
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
-const isLegal = () => {
+const isLegal = (startStack, endStack) => {
   // define the 'piece' to be moved as the number popped off of the start stack array.
-  const piece = startStack.pop()
+  let piece = stacks[startStack].pop()
   
   // if the piece is going to be larger than any number already in the stack array it is supposed to be placed on, then don't allow it to be placed there, e.g. return "false" to signal an illegal move, else return true for legal move.
-  for (let i =0; i<= endStack.length; i++) {
+  for (let i =0; i<= stacks[endStack].length; i++) {
     if (piece > i) {
       return false
     } else {
@@ -65,6 +63,8 @@ const checkForWin = () => {
 
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
+startStack = stacks[startStack]
+endStack = stacks[endStack]
   if(isLegal) {
     movePiece()
   } 
