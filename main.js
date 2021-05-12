@@ -32,42 +32,64 @@ const printStacks = () => {
 // I think the next think I need to do is define these more dynamically eg startStack = stacks['argument1'], endStack = stacks[argument2]
 // Next, what do you think this function should do?
 const movePiece = (startStack, endStack) => {
-
   // define the 'piece' to be moved as the number popped off of the start stack array.
-  let piece = stacks[startStack].pop()
+  startStack = stacks[startStack]
+  endStack = stacks[endStack]
+  // why is it not recognizing the pop method here??
+  let piece = startStack.pop()
   // use the push method to add that piece to the end of the end stack array
-  
-  stacks[endStack].push(piece)
-
+  endStack.push(piece)
 }
 
-// Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
+
+
+
 const isLegal = (startStack, endStack) => {
   // define the 'piece' to be moved as the number popped off of the start stack array.
-  let piece = stacks[startStack].pop()
+  startStack = stacks[startStack]
+  endStack = stacks[endStack]
+  let piece = startStack.pop()
+ 
   
-  // if the piece is going to be larger than any number already in the stack array it is supposed to be placed on, then don't allow it to be placed there, e.g. return "false" to signal an illegal move, else return true for legal move.
-  for (let i =0; i<= stacks[endStack].length; i++) {
-    if (piece > i) {
-      return false
-    } else {
+  // if the piece is going to be larger than any number already in the stack array it is supposed to be placed on, then don't allow it to be placed there, e.g. return "false" to signal an illegal move, else return true for legal move. First check to see if the end stack length does not equal zero, eg if the end stack is empty, then the move by deault it legal
+
+  // is it only the of moving to an empty peg that it won't recognize the move as legal for some reason
+  for (let i =0; i<= endStack.length; i++) {
+    if (endStack.length === 0) {
+      console.log(stacks[endStack], 'returning true')
       return true
+    } else if (piece < endStack[i +1]) {
+      console.log(stacks[endStack][i +1])
+      return true
+    }
+     else {
+      return false
     }
   }
 }
 
 // What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
-
-}
+  // first convert the object key values to strings, so it is straightforward to test if they are strictly equal to a win eg '4,3,2,1'
+  let winInB = stacks.b.toString()
+  let winInC = stacks.c.toString()
+ 
+  if (winInB === '4,3,2,1' || winInC === '4,3,2,1') {
+    return true
+  } else {
+    return false
+  }
+ }
 
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
-startStack = stacks[startStack]
-endStack = stacks[endStack]
+  //  let piece = stacks[startStack].pop()
   if(isLegal) {
-    movePiece()
-  } 
+   movePiece(startStack,endStack)
+   checkForWin()
+  } else {
+    return 'You cannot put a bigger piece on top of a smaller one'
+  }
 }
 
 const getPrompt = () => {
