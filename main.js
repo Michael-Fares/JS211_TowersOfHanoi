@@ -75,6 +75,7 @@ const checkForWin = () => {
   let winInC = stacks.c.toString()
  
   if (winInB === '4,3,2,1' || winInC === '4,3,2,1') {
+    console.log('You won!')
     return true
   } else {
     return false
@@ -83,8 +84,7 @@ const checkForWin = () => {
 
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
-  //  let piece = stacks[startStack].pop()
-  if(isLegal) {
+  if(isLegal){
    movePiece(startStack,endStack)
    checkForWin()
   } else {
