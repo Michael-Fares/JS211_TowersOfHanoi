@@ -33,12 +33,10 @@ const printStacks = () => {
 // Next, what do you think this function should do?
 const movePiece = (startStack, endStack) => {
   // define the 'piece' to be moved as the number popped off of the start stack array.
-  startStack = stacks[startStack]
-  endStack = stacks[endStack]
   // why is it not recognizing the pop method here??
-  let piece = startStack.pop()
+  let piece = stacks[startStack].pop()
   // use the push method to add that piece to the end of the end stack array
-  endStack.push(piece)
+  stacks[endStack].push(piece)
 }
 
 
@@ -49,17 +47,16 @@ const isLegal = (startStack, endStack) => {
   startStack = stacks[startStack]
   endStack = stacks[endStack]
   let piece = startStack.pop()
- 
+  // push the piece back on top of the original array, because we are only trying to see if the move would be legal, we don't want to mutuate the array by actually popping anyting in this function
+  startStack.push(piece)
   
   // if the piece is going to be larger than any number already in the stack array it is supposed to be placed on, then don't allow it to be placed there, e.g. return "false" to signal an illegal move, else return true for legal move. First check to see if the end stack length does not equal zero, eg if the end stack is empty, then the move by deault it legal
 
   // is it only the of moving to an empty peg that it won't recognize the move as legal for some reason
   for (let i =0; i<= endStack.length; i++) {
     if (endStack.length === 0) {
-      console.log(stacks[endStack], 'returning true')
       return true
     } else if (piece < endStack[i +1]) {
-      console.log(stacks[endStack][i +1])
       return true
     }
      else {
@@ -84,11 +81,12 @@ const checkForWin = () => {
 
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
-  if(isLegal){
+  
+  if(isLegal(startStack, endStack)){
    movePiece(startStack,endStack)
    checkForWin()
   } else {
-    return 'You cannot put a bigger piece on top of a smaller one'
+    console.log('You cannot put a bigger piece on top of a smaller one')
   }
 }
 
