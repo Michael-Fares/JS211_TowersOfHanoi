@@ -46,15 +46,19 @@ const isLegal = (startStack, endStack) => {
   // define the 'piece' to be moved as the number popped off of the start stack array.
   startStack = stacks[startStack]
   endStack = stacks[endStack]
-  let piece = startStack[startStack.length-1]
 
+  // define the piece to be tested as the last item in the startStack array.
+  let piece = startStack[startStack.length-1]
+  
+  
+  
   // if the piece is going to be larger than any number already in the stack array it is supposed to be placed on, then don't allow it to be placed there, e.g. return "false" to signal an illegal move, else return true for legal move. First check to see if the end stack length does not equal zero, eg if the end stack is empty, then the move by deault it legal
 
   // is it only the of moving to an empty peg that it won't recognize the move as legal for some reason
   for (let i =0; i<= endStack.length; i++) {
     if (endStack.length === 0) {
       return true
-    } else if (piece < endStack[i +1]) {
+    } else if (piece < endStack[i]) {
       return true
     }
      else {
