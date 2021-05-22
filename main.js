@@ -29,35 +29,29 @@ const printStacks = () => {
   console.log("c: " + stacks.c);
 }
 
-// I think the next think I need to do is define these more dynamically eg startStack = stacks['argument1'], endStack = stacks[argument2]
+// In all functions, use bracket notation to define and access startStack and endStack dynamically eg startStack = stacks[startStack // can be a or b or c depending on user input], endStack = stacks[endStack // can be a or b or c depending on user input ]
+
 // Next, what do you think this function should do?
 const movePiece = (startStack, endStack) => {
   // define the 'piece' to be moved as the number popped off of the start stack array.
-  // why is it not recognizing the pop method here??
   let piece = stacks[startStack].pop()
-  // use the push method to add that piece to the end of the end stack array
+  // To 'move' the piece use the push method to add that piece to the end of the end stack array.
   stacks[endStack].push(piece)
 }
 
-
-
-
 const isLegal = (startStack, endStack) => {
-  // define the 'piece' to be moved as the number popped off of the start stack array.
+// store the stack arrays to be accessed in varibales, to make the array methods below easier to visualize and work with.
   startStack = stacks[startStack]
   endStack = stacks[endStack]
 
-  // define the piece to be tested as the last item in the startStack array.
+  // define the piece to be tested for a legal move as the last item in the startStack array, using array.length-1, which will always access last item in array, but not mutate it.
   let piece = startStack[startStack.length-1]
   
-  
-  
-  // if the piece is going to be larger than any number already in the stack array it is supposed to be placed on, then don't allow it to be placed there, e.g. return "false" to signal an illegal move, else return true for legal move. First check to see if the end stack length does not equal zero, eg if the end stack is empty, then the move by deault it legal
-
-  // is it only the of moving to an empty peg that it won't recognize the move as legal for some reason
   for (let i =0; i<= endStack.length; i++) {
+     // Allowing a legal move: First check to see if the end stack length does not equal zero, eg if the end stack is empty, then the move by deault is legal
     if (endStack.length === 0) {
       return true
+        // Not allowing an illegal move: if the piece is going to be less than any number already in the end stack array it is supposed to be placed on, then then this is a legal move, so return true for legal move. Else, don't allow it to be placed there, e.g. return "false" to signal an illegal move. 
     } else if (piece < endStack[i]) {
       return true
     }
@@ -67,12 +61,15 @@ const isLegal = (startStack, endStack) => {
   }
 }
 
-// What is a win in Towers of Hanoi? When should this function run?
+
 const checkForWin = () => {
+  // What is a win in Towers of Hanoi? When should this function run?
   // first convert the object key values to strings, so it is straightforward to test if they are strictly equal to a win eg '4,3,2,1'
+  // checkForWin should run after every legal move. 
   let winInB = stacks.b.toString()
   let winInC = stacks.c.toString()
  
+  // if the user acheives a win by moving all pieces in same order to either stack b (WinInB) or stack c (WinInC), return true for a win. Else, return false.
   if (winInB === '4,3,2,1' || winInC === '4,3,2,1') {
     console.log('You won!')
     return true
@@ -83,7 +80,9 @@ const checkForWin = () => {
 
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
-  
+  // Check if the move is legal by calling the isLegal function.  
+  // If so, then move the piece by calling the move piece function, and then check for a win
+  // else, tell the user the move is illegal
   if(isLegal(startStack, endStack)){
    movePiece(startStack,endStack)
    checkForWin()
