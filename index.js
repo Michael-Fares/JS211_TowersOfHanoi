@@ -41,13 +41,21 @@ const pickUpStone = (rowID) => {
 const dropStone = (rowID) => {
   console.log('The stone you dropped is', stone)
   let currentRow = document.getElementById(rowID)
-  let lastStone = currentRow.lastChild
- // how to use the data names to actually access their sizes? getAttribute doesn't seem to be working.
+  let lastStone = currentRow.lastElementChild
+ // define the last stone size as a number datatype.
+
   if (!lastStone) {
     // if there is no 'last stone' on the row (no stone at all), then this is a legal move, so append the stone.
  currentRow.appendChild(stone)
   } else {
-    // what should go here?
+    let lastStoneSize = Number(lastStone.getAttribute('data-size'))
+// define current stone size as a number datatype
+let currentStoneSize = Number(stone.getAttribute('data-size'))
+     if ((lastStoneSize > currentStoneSize)){
+      currentRow.appendChild(stone)
+     } else {
+       // what should go here to default the stone back?
+     }
   }
   stone = null
 }
