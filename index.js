@@ -21,6 +21,7 @@ const handleClick = (row) => {
   } else {
     dropStone(row.id)
   }
+  checkForWin(row)
 } 
 
 // this function can be called to get the last stone in the stack
@@ -54,7 +55,7 @@ let currentStoneSize = Number(stone.getAttribute('data-size'))
      if ((lastStoneSize > currentStoneSize)){
       currentRow.appendChild(stone)
      } else {
-       // what should go here to default the stone back?
+      return
      }
   }
   stone = null
@@ -62,3 +63,22 @@ let currentStoneSize = Number(stone.getAttribute('data-size'))
 
 // * Remember you can use your logic from 'main.js' to maintain the rules of the game. But how? Follow the flow of data just like falling dominoes.
 
+const checkForWin = (row) => {
+  let stone1 = document.getElementById('1')
+  let stone2 = document.getElementById('2')
+  let stone3 = document.getElementById('3')
+  let stone4 = document.getElementById('4')
+  console.log(stone1, stone2, stone3, stone4)
+  if(row.id !== 'bottom-row') {
+    if (row.children.item(0) === stone4
+     && row.children.item(1) === stone3
+      && row.children.item(2) === stone2 
+      && row.children.item(3) === stone1) {
+alert('You won!')
+    }
+}
+}
+
+const reset = () => {
+  window.location.reload()
+}

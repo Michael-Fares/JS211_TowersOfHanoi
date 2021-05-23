@@ -2,11 +2,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 34px;
-  margin: 25px;
+  height: 25px;
+  margin: 100px;
   border: 1px solid lightgray;
 }
-
 .row {
   z-index: -10;
 }
@@ -34,6 +33,7 @@
 [data-color] {
   width: 25px;
   float: left;
+  border-radius: 30%;
 }
 
 [data-color="blue"] {
@@ -42,18 +42,18 @@
 }
 
 [data-color="green"] {
-  height: 33px;
+  height: 66px;
   background-color: green;
 }
 
 [data-color="red"] {
-  height: 33px;
+  height: 100px;
   background-color: red;
 }
 
 [data-color="yellow"] {
-  height: 33px;
-  background-color: yellow;
+  height: 133px;
+  background-color: orange;
 }
 
 #announce-game-won {
