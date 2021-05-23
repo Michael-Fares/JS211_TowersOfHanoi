@@ -80,5 +80,19 @@ alert('You won!')
 }
 
 const reset = () => {
-  window.location.reload()
+  let stone1 = document.getElementById('1')
+  let stone2 = document.getElementById('2')
+  let stone3 = document.getElementById('3')
+  let stone4 = document.getElementById('4')
+   const startingRow = document.getElementById('bottom-row')
+  if(stone1 && stone2 && stone3 && stone4) {
+   stone1.remove()
+   stone2.remove()
+   stone3.remove()
+   stone4.remove()
+   startingRow.appendChild(stone4)
+    startingRow.appendChild(stone3)
+    startingRow.appendChild(stone2)
+    startingRow.appendChild(stone1)
+  }
 }
