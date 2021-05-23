@@ -9,17 +9,17 @@ let stone = null
 
 // this function is called when a row is clicked. 
 // Open your inspector tool to see what is being captured and can be used.
-const selectRow = (row) => {
+const handleClick = (row) => {
   
   const currentRow = row.getAttribute("data-row")
   
   console.log("Yay, we clicked an item", row)
   console.log("Here is the rows's id: ", row.id)
   console.log("Here is the rows's data-size: ", currentRow)
-  if(stone) {
-  dropStone(row.id)
+  if(!stone) {
+  pickUpStone(row.id)
   } else {
-    pickUpStone(row.id)
+    dropStone(row.id)
   }
 } 
 
@@ -28,10 +28,10 @@ const selectRow = (row) => {
 // why am I having to click twice before this function is invoked??
 const pickUpStone = (rowID) => {
   const selectedRow = document.getElementById(rowID);
-  let stone = selectedRow.lastChild;
+  stone = selectedRow.lastElementChild;
   console.log(stone)
   selectedRow.removeChild(stone)
-  console.log('current stone', stone)
+  console.log('The stone you picked up is', stone)
 }
 
 // You could use this function to drop the stone but you'll need to toggle between pickUpStone & dropStone
@@ -39,8 +39,16 @@ const pickUpStone = (rowID) => {
 // Something like: if(!stone){pickupStone} else{dropStone}
 
 const dropStone = (rowID) => {
-  console.log('stone to be dropped', stone)
-  document.getElementById(rowID).appendChild(stone)
+  console.log('The stone you dropped is', stone)
+  let currentRow = document.getElementById(rowID)
+  let lastStone = currentRow.lastChild
+ // how to use the data names to actually access their sizes? getAttribute doesn't seem to be working.
+  if (!lastStone) {
+    // if there is no 'last stone' on the row (no stone at all), then this is a legal move, so append the stone.
+ currentRow.appendChild(stone)
+  } else {
+    // what should go here?
+  }
   stone = null
 }
 
