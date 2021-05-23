@@ -4,12 +4,17 @@
     <meta charset="utf-8">
     <title></title>
     <script src="index.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+    <div class="top">
     <h1>Towers Of Hanoi</h1>
     <button class="reset" onclick="reset()">Reset</button>
+  </div>
     <hr/>
+    <div class="maincontainer">
       <div id="top-row" data-row="top" class="red row" onclick="handleClick(this)"></div>
       <div id="middle-row" data-row="middle" class="yellow row" onclick="handleClick(this)"></div>
       <div id="bottom-row" class="green row" data-row="bottom" onclick="handleClick(this)">
@@ -18,7 +23,9 @@
         <div id="2" data-size="2" data-color="green" class="stone" ></div>
         <div id="1" data-size="1" data-color="blue" class="stone" ></div>
       </div>
+    </div>
     <hr/>
+    <p class="instructions"><span>How to play:</span> Move all disks from the left tower to either the middle or right tower. Click on a disk to move it. You can only move one disk at a time, and you cannot place a larger disk on top of a smaller one. Good luck!</p>
   </body>
 </html>
 

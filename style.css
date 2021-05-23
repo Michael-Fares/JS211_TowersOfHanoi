@@ -1,58 +1,85 @@
+body {
+background-color: black;
+font-family: 'Julius Sans One', sans-serif;
+}
+.instructions {
+  margin: 50px;
+  color: white;
+}
+h1 {
+  color: white;
+}
+.instructions span {
+  color: yellow;
+}
+.reset {
+  border: none;
+  padding: 10px;
+  font-family: 'Julius Sans One', sans-serif;
+  background-color: white;
+  font-size: 20px;
+}
+.reset:hover {
+  background-color: yellow;
+}
+.top{
+display:flex;
+justify-content: space-around;
+align-items: center;
+}
+.maincontainer {
+display:flex;
+flex-direction: row-reverse;
+justify-content: space-evenly;
+align-items: flex-end;
+background-image: url('https://images.unsplash.com/photo-1476673160081-cf065607f449?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');
+background-position-Y: 90%;
+height: 300px;
+}
 [data-row] {
   display: flex;
+  flex-direction: column-reverse;
   justify-content: flex-start;
   align-items: center;
-  height: 25px;
-  margin: 100px;
-  border: 1px solid lightgray;
+  height: 250px;
+  width: 20px;
+  margin: 20px;
+  border: 1px solid black;
+  border-bottom: none;
+  background-color: lightcoral;
+  background-image: url('https://cdn.pixabay.com/photo/2016/11/29/01/54/wood-1866667_1280.jpg');
+  box-shadow: 10px 3px 30px; 
 }
 .row {
-  z-index: -10;
-}
-
-[data-row].red {
-  background-color: #f6c5c5;
-}
-
-[data-row].yellow {
-  background-color: #ffffa9;
-}
-
-[data-row].green {
-  background-color: #baf6ba;
-}
-
-[data-row].blue {
-  background-color: aliceblue;
-}
-
-.stone {
   z-index: 10;
 }
 
+.stone {
+  z-index: 20;
+}
 [data-color] {
-  width: 25px;
-  float: left;
+  height: 25px;
   border-radius: 30%;
+  box-shadow: 2px 2px 2px;
 }
 
 [data-color="blue"] {
-  height: 33px;
+  width: 35px;
   background-color: blue;
 }
 
 [data-color="green"] {
-  height: 66px;
+  width: 68px;
   background-color: green;
 }
 
 [data-color="red"] {
-  height: 100px;
+  width: 102px;
   background-color: red;
 }
 
 [data-color="yellow"] {
-  height: 133px;
+  width: 135px;
   background-color: orange;
 }
 
