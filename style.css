@@ -21,6 +21,7 @@ h1 {
 }
 .reset:hover {
   background-color: yellow;
+  cursor: pointer;
 }
 .top{
 display:flex;
@@ -34,7 +35,7 @@ justify-content: space-evenly;
 align-items: flex-end;
 background-image: url('https://images.unsplash.com/photo-1476673160081-cf065607f449?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');
 background-position-Y: 90%;
-height: 300px;
+height: 20rem;
 }
 [data-row] {
   display: flex;
@@ -56,6 +57,7 @@ height: 300px;
 
 .stone {
   z-index: 20;
+  cursor: pointer;
 }
 [data-color] {
   height: 25px;
@@ -86,4 +88,15 @@ height: 300px;
 #announce-game-won {
   font-size: 50px;
   text-align: center;
+}
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media all and (max-width: 600px) {
+  .maincontainer { 
+    height: 60vh; 
+  }
 }
